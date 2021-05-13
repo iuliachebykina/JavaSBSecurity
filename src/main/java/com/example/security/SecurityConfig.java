@@ -47,11 +47,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public InMemoryUserDetailsManager inMemoryUserDetailsManager()
     {
         List<UserDetails> userDetailsList = new ArrayList<>();
-        userDetailsList.add(User.withUsername("admin").password(passwordEncoder().encode("qwerty"))
+        userDetailsList.add(User.withUsername("admin1").password(passwordEncoder().encode("qwerty"))
                 .roles("ADMIN").build());
-        userDetailsList.add(User.withUsername("support").password(passwordEncoder().encode("1234"))
+        userDetailsList.add(User.withUsername("admin2").password(passwordEncoder().encode("password"))
+                .roles("ADMIN").build());
+        userDetailsList.add(User.withUsername("support1").password(passwordEncoder().encode("1234"))
                 .roles("SUPPORT").build());
-
+        userDetailsList.add(User.withUsername("support2").password(passwordEncoder().encode("asdfg"))
+                .roles("SUPPORT").build());
         return new InMemoryUserDetailsManager(userDetailsList);
     }
 }
