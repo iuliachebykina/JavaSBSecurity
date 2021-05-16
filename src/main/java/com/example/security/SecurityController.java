@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
-import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
@@ -33,9 +32,9 @@ public class SecurityController {
     }
 
     private AuthDTO getNameAndRoles() {
-        var context = SecurityContextHolder.getContext().getAuthentication();
-        var name = context.getName();
-        var roles = context.getAuthorities().stream().map(Object::toString).collect(Collectors.toList());
+        var auth = SecurityContextHolder.getContext().getAuthentication();
+        var name = auth.getName();
+        var roles = auth.getAuthorities().stream().map(Object::toString).collect(Collectors.toList());
         return new AuthDTO(name, roles);
     }
 
